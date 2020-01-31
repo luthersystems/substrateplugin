@@ -2,15 +2,11 @@ package substratepluginuser
 
 import (
 	"context"
-	"fmt"
+	"os"
 	"plugin"
-	"runtime"
 
 	"bitbucket.org/luthersystems/substrateplugin/substratepluginshare"
 )
-
-// Version is the plugin version to load.
-var Version = "2.89.0-SNAPSHOT"
 
 // PluginNewRPC is a pointer to the plugin's NewRPC function.
 var PluginNewRPC func([]substratepluginshare.Config) *substratepluginshare.Handle
@@ -31,7 +27,12 @@ var PluginQueryInfo func(*substratepluginshare.Handle, []substratepluginshare.Co
 var PluginQueryBlock func(*substratepluginshare.Handle, uint64, []substratepluginshare.Config) (substratepluginshare.Block, error)
 
 func init() {
-	plugin, err := plugin.Open(fmt.Sprintf("substrateplugin-%s-%s-%s.so", runtime.GOOS, runtime.GOARCH, Version))
+	pluginFile := os.Getenv("SUBSTRATE_PLUGIN_FILE")
+	if pluginFile == "" {
+		panic("SUBSTRATE_PLUGIN_FILE")
+	}
+
+	plugin, err := plugin.Open(pluginFile)
 	if err != nil {
 		panic(err)
 	}
