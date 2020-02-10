@@ -177,11 +177,12 @@ type Handle struct {
 
 // Response represents a shiroclient response.
 type Response struct {
-	ResultJSON   []byte
-	HasError     bool
-	ErrorCode    int
-	ErrorMessage string
-	ErrorJSON    []byte
+	ResultJSON    []byte
+	HasError      bool
+	ErrorCode     int
+	ErrorMessage  string
+	ErrorJSON     []byte
+	TransactionID string
 }
 
 // UnmarshalTo allows unmarshalling a Response to an interface{}.
