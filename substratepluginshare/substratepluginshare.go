@@ -19,20 +19,22 @@ import (
 // and its fields are public to allow substrateplugin to convert them
 // to shiroclient options.
 type RequestOptions struct {
-	Log                *logrus.Logger
-	LogFields          logrus.Fields
-	Headers            map[string]string
-	Endpoint           string
-	ID                 string
-	AuthToken          string
-	Params             interface{}
-	Transient          map[string][]byte
-	Target             *interface{}
-	TimestampGenerator func(context.Context) string
-	MSPFilter          []string
-	MinEndorsers       int
-	Creator            string
-	Ctx                context.Context
+	Log                 *logrus.Logger
+	LogFields           logrus.Fields
+	Headers             map[string]string
+	Endpoint            string
+	ID                  string
+	AuthToken           string
+	Params              interface{}
+	Transient           map[string][]byte
+	Target              *interface{}
+	TimestampGenerator  func(context.Context) string
+	MSPFilter           []string
+	MinEndorsers        int
+	Creator             string
+	Ctx                 context.Context
+	DependentTxID       string
+	DisableWritePolling bool
 }
 
 // Config is a type for a function that can mutate a requestOptions
@@ -165,6 +167,23 @@ func WithMinEndorsers(minEndorsers int) Config {
 func WithCreator(creator string) Config {
 	return (func(r *RequestOptions) {
 		r.Creator = creator
+	})
+}
+
+// WithDependentTxID allows specifying a dependency on a transaction ID.  If
+// set, the client will poll for the presence of that transaction before
+// simulating the request on the peer with the transaction.
+func WithDependentTxID(txID string) Config {
+	return (func(r *RequestOptions) {
+		r.DependentTxID = txID
+	})
+}
+
+// WithDisableWritePolling allows disabling polling for full consensus after a
+// write is committed.
+func WithDisableWritePolling(disable bool) Config {
+	return (func(r *RequestOptions) {
+		r.DisableWritePolling = disable
 	})
 }
 
