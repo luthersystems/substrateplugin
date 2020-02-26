@@ -179,6 +179,18 @@ func WithDependentTxID(txID string) Config {
 	})
 }
 
+// WithConditionalDependentTxID allows specifying a conditional dependency on a
+// transaction ID when polling is disabled or transaction dependencies are
+// already enabled.  This is intended for use with chained sequential calls that
+// have a critical dependency.
+func WithConditionalDependentTxID(txID string) Config {
+	return (func(r *RequestOptions) {
+		if r.DisableWritePolling || r.DependentTxID != "" {
+			r.DependentTxID = txID
+		}
+	})
+}
+
 // WithDisableWritePolling allows disabling polling for full consensus after a
 // write is committed.
 func WithDisableWritePolling(disable bool) Config {
