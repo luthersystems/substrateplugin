@@ -5,7 +5,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-[ "$OSTYPE" == "linux-gnu" ]
+[ "$OSTYPE" == "linux-musl" ] || [ "$OSTYPE" == "linux-gnu" ]
 
 TARGET_GPP="$1"
 TARGET_UID="$2"

@@ -49,7 +49,7 @@ citest:
 		-e "CGO_LDFLAGS_ALLOW=-Wl,--no-as-needed" \
 		-w /go/src/${PROJECT_PATH} \
 		--entrypoint /tmp/guest.sh \
-		${BUILD_IMAGE_GO} ${GO_PKG_PATH} $(shell id -u) /go/src/${PROJECT_PATH} "make go-test"
+		${BUILD_IMAGE_GODYNAMIC} ${GO_PKG_PATH} $(shell id -u) /go/src/${PROJECT_PATH} "make go-test"
 
 .PHONY: docker-login
 docker-login:
@@ -65,7 +65,7 @@ lint:
 		-e "CGO_LDFLAGS_ALLOW=-Wl,--no-as-needed" \
 		-w /go/src/${PROJECT_PATH} \
 		--entrypoint /tmp/guest.sh \
-		${BUILD_IMAGE_GO} ${GO_PKG_PATH} $(shell id -u) /go/src/${PROJECT_PATH} "make linttarget"
+		${BUILD_IMAGE_GODYNAMIC} ${GO_PKG_PATH} $(shell id -u) /go/src/${PROJECT_PATH} "make linttarget"
 
 .PHONY: linttarget
 linttarget:
