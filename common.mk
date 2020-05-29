@@ -7,8 +7,9 @@ PACKAGE=bitbucket.org/luthersystems/${PROJECT}
 AWS_REGION=eu-west-2
 ECR_HOST=967058059066.dkr.ecr.${AWS_REGION}.amazonaws.com
 
-BUILDENV_TAG=0.0.20
+BUILDENV_TAG=0.0.28
 BUILD_IMAGE_GO=${ECR_HOST}/luthersystems/build-go:${BUILDENV_TAG}
+BUILD_IMAGE_GODYNAMIC=${ECR_HOST}/luthersystems/build-godynamic:${BUILDENV_TAG}
 BUILD_IMAGE_GOEXTRA=${ECR_HOST}/luthersystems/build-goextra:${BUILDENV_TAG}
 BUILD_IMAGE_API=${ECR_HOST}/luthersystems/build-api:${BUILDENV_TAG}
 
