@@ -1,9 +1,9 @@
 PROJECT=substrateplugin
-PROJECT_PATH=bitbucket.org/luthersystems/${PROJECT}
+PROJECT_PATH=github.com/luthersystems/${PROJECT}
 
 VERSION=0.1.0-SNAPSHOT
 
-PACKAGE=bitbucket.org/luthersystems/${PROJECT}
+PACKAGE=github.com/luthersystems/${PROJECT}
 AWS_REGION=eu-west-2
 ECR_HOST=967058059066.dkr.ecr.${AWS_REGION}.amazonaws.com
 
