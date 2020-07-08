@@ -1,0 +1,13 @@
+image:
+  name: 967058059066.dkr.ecr.eu-west-2.amazonaws.com/luthersystems/build-godynamic:0.0.28
+  aws:
+    access-key: $AWS_ACCESS_KEY_ID
+    secret-key: $AWS_SECRET_ACCESS_KEY
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          script:
+            - source bitbucket-pipelines-go.sh
+            - cd ${IMPORT_PATH} && make print-go-env go-test
