@@ -1,4 +1,4 @@
-module bitbucket.org/luthersystems/substrateplugin
+module github.com/luthersystems/substrateplugin
 
 go 1.13
 
