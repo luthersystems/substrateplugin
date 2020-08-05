@@ -35,6 +35,8 @@ type RequestOptions struct {
 	Ctx                 context.Context
 	DependentTxID       string
 	DisableWritePolling bool
+	CCFetchURLDowngrade bool
+	CCFetchURLProxy     string
 }
 
 // Config is a type for a function that can mutate a requestOptions
@@ -196,6 +198,21 @@ func WithConditionalDependentTxID(txID string) Config {
 func WithDisableWritePolling(disable bool) Config {
 	return (func(r *RequestOptions) {
 		r.DisableWritePolling = disable
+	})
+}
+
+// WithCCFetchURLDowngrade allows controlling https -> http downgrade,
+// typically useful before proxying for ccfetchurl library.
+func WithCCFetchURLDowngrade(downgrade bool) Config {
+	return (func(r *requestOptions) {
+		r.ccFetchURLDowngrade = true
+	})
+}
+
+// WithCCFetchURLProxy sets the proxy for ccfetchurl library.
+func WithCCFetchURLProxy(proxy string) Config {
+	return (func(r *requestOptions) {
+		r.ccFetchURLProxy = proxy
 	})
 }
 
