@@ -204,14 +204,14 @@ func WithDisableWritePolling(disable bool) Config {
 // WithCCFetchURLDowngrade allows controlling https -> http downgrade,
 // typically useful before proxying for ccfetchurl library.
 func WithCCFetchURLDowngrade(downgrade bool) Config {
-	return (func(r *requestOptions) {
+	return (func(r *RequestOptions) {
 		r.ccFetchURLDowngrade = true
 	})
 }
 
 // WithCCFetchURLProxy sets the proxy for ccfetchurl library.
 func WithCCFetchURLProxy(proxy string) Config {
-	return (func(r *requestOptions) {
+	return (func(r *RequestOptions) {
 		r.ccFetchURLProxy = proxy
 	})
 }
