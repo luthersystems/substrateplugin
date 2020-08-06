@@ -205,14 +205,14 @@ func WithDisableWritePolling(disable bool) Config {
 // typically useful before proxying for ccfetchurl library.
 func WithCCFetchURLDowngrade(downgrade bool) Config {
 	return (func(r *RequestOptions) {
-		r.ccFetchURLDowngrade = true
+		r.CCFetchURLDowngrade = downgrade
 	})
 }
 
 // WithCCFetchURLProxy sets the proxy for ccfetchurl library.
 func WithCCFetchURLProxy(proxy string) Config {
 	return (func(r *RequestOptions) {
-		r.ccFetchURLProxy = proxy
+		r.CCFetchURLProxy = proxy
 	})
 }
 
