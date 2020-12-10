@@ -255,4 +255,6 @@ type Block interface {
 type Transaction interface {
 	ID() string
 	Reason() string
+	Event() []byte
+	ChaincodeID() string
 }
